@@ -15,13 +15,6 @@ app = Flask(__name__)
 extend_client = ExtendClient()
 
 
-@app.route("/")
-def hello():
-    redis.incr("hits")
-    counter = str(redis.get("hits"), "utf-8")
-    return "This webpage has been viewed " + counter + " time(s)"
-
-
 @app.route("/credit_card/sign_in", methods=["POST"])
 def sign_in():
     return extend_client.sign_in()
